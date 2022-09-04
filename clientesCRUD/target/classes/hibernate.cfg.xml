@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+      <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+      <!-- Driver de conexão JDBC do SQL Server: -->
+      <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+      <!-- URL de conexão ao banco de dados SQL Server: -->
+      <property name="hibernate.connection.url">jdbc:sqlserver://localhost;user=sa;password=1234;databaseName=testeHibernate;trustServerCertificate=true</property>
+      <!-- Nome de usuário do banco de dados: -->
+      <property name="hibernate.connection.username">sa</property>
+      <!-- Senha do usuário no banco de dados: -->
+      <property name="hibernate.connection.password">1234</property>
+      <property name="hibernate.show_sql">true</property>
+      <property name="format_sql">false</property>
+      <!-- A informação abaixo é pedindo para atualizar as tabelas a cada execução do programa. -->
+      <property name="hbm2ddl.auto">update</property>
+      <property name="hibernate.current_session_context_class">thread</property>
+
+	  <!-- Informando as model classes para o Hibernate: -->
+	  <mapping class="br.com.kerberossec.clientesCRUD.model.Cliente" />
+    </session-factory>
+</hibernate-configuration>

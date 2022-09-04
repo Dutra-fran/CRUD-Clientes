@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<h:head>
+		<title>Procurar Cliente</title>
+	</h:head>
+	
+	<h:body>
+		<h1>Procurar Cliente Específico</h1>
+		
+		<h2>
+			<h:form>
+				<h:commandLink value="+ NOVO CLIENTE" action="#{clienteController.adicionarForm}"/>
+			</h:form>
+		</h2>
+		
+		<h3>
+			<h:outputLabel id="oplMensagem" value="#{clienteController.msg}"/>
+		</h3>
+		
+		<h:form>
+			<table>
+				<tr>
+					<td><h:outputText id="lcpf" value="CPF:"/></td>
+					<td><h:inputText id="tcpf" value="#{clienteController.cliente.cpf}"/></td>
+				</tr>
+				<tr>
+        			<td colspan="2">
+        				<h:commandButton action="#{clienteController.procurarCliente}" value="Buscar" />
+        			</td>
+    			</tr>
+			</table>
+		</h:form>
+		<br/>
+		<h:form rendered="#{not empty clienteController.clienteEspecifico}">
+			<table>
+				<tr>
+					<td>Nome:</td>
+					<td>#{clienteController.clienteEspecifico.nome}</td>
+				</tr>
+				<tr>
+					<td>CPF:</td>
+					<td>#{clienteController.clienteEspecifico.cpf}</td>
+				</tr>
+				<tr>
+					<td>E-mail:</td>
+					<td>#{clienteController.clienteEspecifico.email}</td>
+				</tr>
+				<tr>
+					<td>Idade:</td>
+					<td>#{clienteController.clienteEspecifico.idade}</td>
+				</tr>
+				<tr>
+					<td>Estado:</td>
+					<td>#{clienteController.clienteEspecifico.estado}</td>
+				</tr>
+				<tr>
+					<td>Município:</td>
+					<td>#{clienteController.clienteEspecifico.municipio}</td>
+				</tr>
+			</table>
+		</h:form>
+		
+	</h:body>
+</html>

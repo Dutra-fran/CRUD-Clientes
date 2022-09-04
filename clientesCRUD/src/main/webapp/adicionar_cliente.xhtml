@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<h:head>
+		<title>Adicionar Cliente</title>
+	</h:head>
+	
+	<h:body>
+		<h1>Formulário de Cadastro de Clientes</h1>
+		<h2>
+			<h:form>
+				<h:commandLink value="Listagem de Clientes" action="#{clienteController.listarForm}"/>
+				<br/>
+				<h:commandLink value="Procurar Clientes Específicos" action="#{clienteController.procurarForm}"/>
+			</h:form>
+		</h2>
+		
+		<h3>
+			<h:outputLabel id="oplMensagem" value="#{clienteController.msg}"/>
+		</h3>
+		
+		<h:form>
+			<table>
+				<tr>
+					<td><h:outputText id="lnome" value="Nome:"/></td>
+					<td><h:inputText id="tnome" value="#{clienteController.cliente.nome}"/></td>
+				</tr>
+				
+				<tr>
+					<td><h:outputText id="lcpf" value="CPF:"/></td>
+					<td><h:inputText id="tcpf" value="#{clienteController.cliente.cpf}"/></td>
+				</tr>
+				
+				<tr>
+					<td><h:outputText id="lemail" value="E-mail:"/></td>
+					<td><h:inputText id="temail" value="#{clienteController.cliente.email}"/></td>
+				</tr>
+				
+				<tr>
+					<td><h:outputText id="lidade" value="Idade:"/></td>
+					<td><h:inputText id="tidade" value="#{clienteController.cliente.idade}"/></td>
+				</tr>
+				
+				<tr>
+					<td><h:outputText id="lestado" value="Estado:"/></td>
+					<td><h:inputText id="testado" value="#{clienteController.cliente.estado}"/></td>
+				</tr>
+				
+				<tr>
+					<td><h:outputText id="lmunicipio" value="Município:"/></td>
+					<td><h:inputText id="tmunicipio" value="#{clienteController.cliente.municipio}"/></td>
+				</tr>
+				
+				<tr>
+        			<td colspan="2">
+        				<h:commandButton id="submit"  type="submit" action="#{clienteController.adicionarCliente}" value="Salvar" />
+        			</td>
+    			</tr>
+			</table>
+		</h:form>
+	</h:body>
+</html>

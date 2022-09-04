@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<h:head>
+		<title>Lista de Clientes</title>
+	</h:head>
+	
+	<h:body>
+		<h1>Clientes Cadastrados</h1>
+		<h2>
+			<h:form>
+				<h:commandLink value="+ NOVO CLIENTE" action="#{clienteController.adicionarForm}"/>
+			</h:form>
+		</h2>
+		
+		<h4>
+			<h:outputLabel id="oplMensagem" value="#{clienteController.msg}"/>
+		</h4>
+		
+		<h:dataTable value="#{clienteController.listaClientes}" var="cliente" border="1">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				#{cliente.nome}
+			</h:column>
+			<h:column>
+				<f:facet name="header">CPF</f:facet>
+				#{cliente.cpf}
+			</h:column>
+			<h:column>
+				<f:facet name="header">E-mail</f:facet>
+				#{cliente.email}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Idade</f:facet>
+				#{cliente.idade}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				#{cliente.estado}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Município</f:facet>
+				#{cliente.municipio}
+			</h:column>
+			<h:column>
+				<f:facet name="header"></f:facet>
+				<h:form>
+					<h:commandLink action="#{clienteController.excluirCliente}" value="Excluir"/>
+				</h:form>
+			</h:column>
+		</h:dataTable>
+		
+	</h:body>
+		
+</html>
