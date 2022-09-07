@@ -2,8 +2,10 @@ package br.com.kerberossec.clientesCRUD.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,15 +50,19 @@ public class ClienteDAOImpl implements ClienteDAO {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Cliente> criteriaQuery = builder.createQuery(Cliente.class);
 		criteriaQuery.from(Cliente.class);
+		
 		return session.createQuery(criteriaQuery).getResultList();
 	}
 
 	public Cliente getCliente(String cpf) {
-		List<Cliente> clientes = listarClientes();
-		
-		for(int i=0; i < clientes.size(); i++)
-			if(clientes.get(i).getCpf().equals(cpf))
-				return clientes.get(i);
+		Session session = getSessionFactory().openSession();
+		try {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Cliente> criteriaQuery = builder.createQuery(Cliente.class);
+			Root<Cliente> root = criteriaQuery.from(Cliente.class);
+			criteriaQuery.where(builder.equal(root.get("cpf"), cpf));
+			return session.createQuery(criteriaQuery).getSingleResult();
+		} catch(NoResultException e) {}
 		
 		return null;
 	}
